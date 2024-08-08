@@ -44,6 +44,7 @@ defaultJava=DEFAULT_JAVA_JNI
 defaultJavaHome=""
 javaHome=""
 makefile=""
+MAKE=make
 if [ "${CC}" = "" ]; then
 	CC=cc
 	export CC
@@ -81,6 +82,25 @@ fi
 
 
 case $defaultOS in
+    "FreeBSD" | "freebsd")
+        makefile="make_linux.mak"
+        defaultOs="freebsd"
+        MAKE=gmake
+        case $defaultOSArch in
+			"amd64")
+				defaultOSArch="amd64"
+				defaultJava=DEFAULT_JAVA_EXEC
+				[ -d /bluebird/teamswt/swt-builddir/JDKs/amd64/jdk1.5.0 ] && defaultJavaHome="/bluebird/teamswt/swt-builddir/JDKs/amd64/jdk1.5.0"
+				;;
+			"aarch64")
+				defaultOSArch="aarch64"
+				defaultJava=DEFAULT_JAVA_EXEC
+				;;
+			*)
+				echo "*** Unknown MODEL <${MODEL}>"
+				;;
+        esac
+        ;;
 	"Linux" | "linux")
 		makefile="make_linux.mak"
 		defaultOS="linux"
@@ -154,13 +174,13 @@ export PROGRAM_OUTPUT DEFAULT_OS DEFAULT_OS_ARCH DEFAULT_WS DEFAULT_JAVA EXE_OUT
 # If the OS is supported (a makefile exists)
 if [ "$makefile" != "" ]; then
 	if [ "$extraArgs" != "" ]; then
-		make -f $makefile $extraArgs
+		${MAKE} -f $makefile $extraArgs
 	else
 		echo "Building $OS launcher. Defaults: -os $DEFAULT_OS -arch $DEFAULT_OS_ARCH -ws $DEFAULT_WS"
-		make -f $makefile clean
+		${MAKE} -f $makefile clean
 		case x$CC in
-		  x*gcc*) make -f $makefile all PICFLAG=-fpic ;;
-		  *)      make -f $makefile all ;;
+		  x*gcc*) ${MAKE} -f $makefile all PICFLAG=-fpic ;;
+		  *)      ${MAKE} -f $makefile all ;;
 		esac
 	fi
 else
