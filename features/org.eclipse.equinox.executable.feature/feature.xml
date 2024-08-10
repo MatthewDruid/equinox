@@ -59,10 +59,24 @@
          version="0.0.0"/>
 
    <plugin
+         id="org.eclipse.equinox.launcher.gtk.freebsd.aarch64"
+         os="freebsd"
+         ws="gtk"
+         arch="aarch64"
+         version="0.0.0"/>
+
+   <plugin
          id="org.eclipse.equinox.launcher.gtk.linux.x86_64"
          os="linux"
          ws="gtk"
          arch="x86_64"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.launcher.gtk.freebsd.amd64"
+         os="freebsd"
+         ws="gtk"
+         arch="amd64"
          version="0.0.0"/>
 
    <plugin

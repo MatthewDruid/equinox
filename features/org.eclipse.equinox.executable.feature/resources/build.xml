@@ -161,6 +161,22 @@
 		</copy>
 		<chmod perm="755" dir="${feature.base}/hpux.gtk.ia64/${collectingFolder}" includes="launcher" />
 	</target>
+    <target name="rootFilesfreebsd_gtk_aarch64">
+		<mkdir dir="${feature.base}/freebsd.gtk.aarch64/${collectingFolder}"/>
+		<copy todir="${feature.base}/freebsd.gtk.aarch64/${collectingFolder}" failonerror="true" overwrite="true">
+			<fileset dir="${basedir}/bin/gtk/freebsd/aarch64" includes="**"			/>
+			<fileset dir="${basedir}/gtk_root" includes="**"			/>
+		</copy>
+		<chmod perm="755" dir="${feature.base}/freebsd.gtk.aarch64/${collectingFolder}" includes="launcher" />
+	</target>
+	<target name="rootFilesfreebsd_gtk_amd64">
+		<mkdir dir="${feature.base}/freebsd.gtk.amd64/${collectingFolder}"/>
+		<copy todir="${feature.base}/freebsd.gtk.amd64/${collectingFolder}" failonerror="true" overwrite="true">
+			<fileset dir="${basedir}/bin/gtk/freebsd/amd64" includes="**"			/>
+			<fileset dir="${basedir}/gtk_root" includes="**"			/>
+		</copy>
+		<chmod perm="755" dir="${feature.base}/freebsd.gtk.amd64/${collectingFolder}" includes="launcher" />
+	</target>
 	<target name="rootFilesgroup_group_group">
 		<antcall target="rootFileswin32_win32_aarch64"/>
 		<antcall target="rootFileswin32_win32_x86_64"/>
@@ -168,6 +184,8 @@
 		<antcall target="rootFileslinux_gtk_ppc64le"/>
 		<antcall target="rootFileslinux_gtk_aarch64"/>
 		<antcall target="rootFileslinux_gtk_x86_64"/>
+		<antcall target="rootFilesfreebsd_gtk_aarch64"/>
+		<antcall target="rootFilesfreebsd_gtk_amd64"/>
 	</target>
 
 	<target name="zip.distribution" depends="init" description="Create a zip containing all the plug-ins and features for the feature: org.eclipse.platform.launchers.">
