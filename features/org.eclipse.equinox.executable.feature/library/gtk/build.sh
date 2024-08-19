@@ -83,7 +83,7 @@ fi
 
 case $defaultOS in
     "FreeBSD" | "freebsd")
-        makefile="make_linux.mak"
+        makefile="make_freebsd.mak"
         defaultOs="freebsd"
         MAKE=gmake
         case $defaultOSArch in
