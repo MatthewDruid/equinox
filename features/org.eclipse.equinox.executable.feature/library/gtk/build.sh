@@ -80,11 +80,10 @@ if [ "$defaultOSArch" = "" ];  then
 	defaultOSArch=`uname -m`
 fi
 
-
 case $defaultOS in
     "FreeBSD" | "freebsd")
         makefile="make_freebsd.mak"
-        defaultOs="freebsd"
+        defaultOS="freebsd"
         MAKE=gmake
         case $defaultOSArch in
 			"amd64")
@@ -139,7 +138,6 @@ case $defaultOS in
 	;;
 esac
 export CC
-
 
 # Set up environment variables needed by the makefiles.
 PROGRAM_OUTPUT="$programOutput"

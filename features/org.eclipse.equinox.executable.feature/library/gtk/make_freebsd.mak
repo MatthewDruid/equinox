@@ -49,10 +49,16 @@ ifeq ($(DEFAULT_OS_ARCH),x86_64)
 # Bug 517013: Avoid using memcpy() to remain compatible with older glibc (not use these flags on 32bit.
 M_CFLAGS ?= -fno-builtin-memcpy -fno-builtin-memmove
 endif
+ifeq ($(DEFAULT_OS_ARCH),amd64)
+M_CFLAGS ?= -fno-builtin-memcpy -fno-builtin-memmove
+endif
 endif
 
 # Determine launch mode.
 ifeq ($(DEFAULT_OS_ARCH),x86_64)
+DEFAULT_JAVA ?= DEFAULT_JAVA_EXEC
+endif
+ifeq ($(DEFAULT_OS_ARCH),amd64)
 DEFAULT_JAVA ?= DEFAULT_JAVA_EXEC
 endif
 
